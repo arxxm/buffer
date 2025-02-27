@@ -35,12 +35,6 @@ type Fact struct {
 	Comment             string
 }
 
-// Буфер и мьютекс для синхронизации
-var (
-	buffer = make(chan Fact, 1000) // Буферный канал для хранения записей
-	wg     sync.WaitGroup
-)
-
 // sendFact — отправка одной записи на сервер
 func sendFact(ctx context.Context, fact Fact) error {
 	// Формируем данные в формате x-www-form-urlencoded
